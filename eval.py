@@ -53,6 +53,12 @@ def parse_args():
         help="Hệ số Length Penalty",
     )
     parser.add_argument(
+        "--repetition_penalty",
+        type=float,
+        default=1.0,
+        help="Hệ số phạt lặp từ (1.0 = tắt, 1.2 = giảm hiện tượng lặp từ)",
+    )
+    parser.add_argument(
         "--max_samples",
         type=int,
         default=None,
@@ -156,7 +162,14 @@ def main():
 
         # Giải mã
         if args.beam_size == 1:
-            pred_ids, _ = greedy_decode(model, src_tensor, src_mask, max_len=60, device=device)
+            pred_ids, _ = greedy_decode(
+                model,
+                src_tensor,
+                src_mask,
+                max_len=60,
+                repetition_penalty=args.repetition_penalty,
+                device=device,
+            )
         else:
             pred_ids, _ = beam_search_decode(
                 model,
@@ -165,6 +178,7 @@ def main():
                 beam_size=args.beam_size,
                 max_len=60,
                 alpha=args.alpha,
+                repetition_penalty=args.repetition_penalty,
                 device=device,
             )
 

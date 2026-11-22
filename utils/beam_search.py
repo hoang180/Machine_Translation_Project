@@ -18,6 +18,7 @@ def greedy_decode(
     max_len: int = 60,
     sos_idx: int = SOS_IDX,
     eos_idx: int = EOS_IDX,
+    repetition_penalty: float = 1.0,
     device: str = "cpu",
 ) -> tuple[list[int], torch.Tensor | None]:
     """
@@ -60,6 +61,14 @@ def greedy_decode(
                 return_attention=True,
             )
 
+            # Áp dụng Repetition Penalty (nếu có)
+            if repetition_penalty > 1.0:
+                for prev_tok in set(pred_tokens):
+                    if next_logits[0, prev_tok] > 0:
+                        next_logits[0, prev_tok] /= repetition_penalty
+                    else:
+                        next_logits[0, prev_tok] *= repetition_penalty
+
             # Lấy token có logit cao nhất: (1, vocab_size) -> scalar
             next_token = next_logits.argmax(dim=-1).item()
 
@@ -98,6 +107,7 @@ def beam_search_decode(
     beam_size: int = 4,
     max_len: int = 60,
     alpha: float = 0.6,
+    repetition_penalty: float = 1.0,
     sos_idx: int = SOS_IDX,
     eos_idx: int = EOS_IDX,
     device: str = "cpu",
@@ -164,6 +174,14 @@ def beam_search_decode(
                     encoder_state=state,
                     return_attention=True,
                 )
+
+                # Áp dụng Repetition Penalty (nếu có)
+                if repetition_penalty > 1.0:
+                    for prev_tok in set(tokens[1:]):
+                        if step_logits[0, prev_tok] > 0:
+                            step_logits[0, prev_tok] /= repetition_penalty
+                        else:
+                            step_logits[0, prev_tok] *= repetition_penalty
 
                 # Log softmax để lấy log probabilities: (1, vocab_size)
                 log_probs = F.log_softmax(step_logits, dim=-1).squeeze(0)

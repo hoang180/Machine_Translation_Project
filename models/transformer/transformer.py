@@ -27,8 +27,11 @@ class TransformerModel(nn.Module):
         pad_idx: int = PAD_IDX,
         use_pe: bool = True,
         tie_weights: bool = False,
+        num_layers: int = None,
     ):
         super().__init__()
+        if num_layers is not None:  # tương thích eval.py: dùng chung số layer cho encoder/decoder
+            num_encoder_layers = num_decoder_layers = num_layers
         self.d_model = d_model
         self.pad_idx = pad_idx
         self.num_heads = num_heads

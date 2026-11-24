@@ -1,5 +1,5 @@
 """
-Module: tokenizers/train_word.py
+Module: custom_tokenizers/train_word.py
 Phụ trách: Phần 1 (Lê)
 Cài đặt: Bộ tách từ mức từ (Word-level Tokenizer) và script xây dựng từ điển cho tiếng Anh & tiếng Việt.
 Tuân thủ chuẩn Contract: <pad>=0, <unk>=1, <sos>=2, <eos>=3.
@@ -122,7 +122,7 @@ class WordTokenizer(BaseTokenizerWrapper):
 def train_word_tokenizers(
     train_src="data/processed/train.en",
     train_tgt="data/processed/train.vi",
-    save_dir="tokenizers/word",
+    save_dir="custom_tokenizers/word",
     vocab_size=25000,
 ):
     os.makedirs(save_dir, exist_ok=True)

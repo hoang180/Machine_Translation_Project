@@ -122,19 +122,19 @@ def get_tokenizer_pair(tokenizer_type="word"):
     tokenizer_type = tokenizer_type.lower()
 
     if tokenizer_type == "word":
-        from tokenizers.train_word import WordTokenizer
-        src_tok = WordTokenizer(vocab_file="tokenizers/word/vocab.en.json")
-        tgt_tok = WordTokenizer(vocab_file="tokenizers/word/vocab.vi.json")
+        from custom_tokenizers.train_word import WordTokenizer
+        src_tok = WordTokenizer(vocab_file="custom_tokenizers/word/vocab.en.json")
+        tgt_tok = WordTokenizer(vocab_file="custom_tokenizers/word/vocab.vi.json")
 
     elif tokenizer_type == "bpe":
-        from tokenizers.train_bpe import BPETokenizer
-        src_tok = BPETokenizer(model_file="tokenizers/bpe/bpe.en.json")
-        tgt_tok = BPETokenizer(model_file="tokenizers/bpe/bpe.vi.json")
+        from custom_tokenizers.train_bpe import BPETokenizer
+        src_tok = BPETokenizer(model_file="custom_tokenizers/bpe/bpe.en.json")
+        tgt_tok = BPETokenizer(model_file="custom_tokenizers/bpe/bpe.vi.json")
 
     elif tokenizer_type == "spm":
-        from tokenizers.train_spm import SPMTokenizer
-        src_tok = SPMTokenizer(model_file="tokenizers/spm/spm.en.model")
-        tgt_tok = SPMTokenizer(model_file="tokenizers/spm/spm.vi.model")
+        from custom_tokenizers.train_spm import SPMTokenizer
+        src_tok = SPMTokenizer(model_file="custom_tokenizers/spm/spm.en.model")
+        tgt_tok = SPMTokenizer(model_file="custom_tokenizers/spm/spm.vi.model")
 
     else:
         raise ValueError(f"Loại tokenizer không hợp lệ: {tokenizer_type}. Chọn 'word', 'bpe' hoặc 'spm'.")

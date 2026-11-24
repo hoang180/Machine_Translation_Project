@@ -1,5 +1,5 @@
 """
-Module: tokenizers/train_spm.py
+Module: custom_tokenizers/train_spm.py
 Phụ trách: Phần 1 (Lê)
 Cài đặt: Huấn luyện và bọc bộ tách từ SentencePiece (Google) theo mô hình Unigram.
 Đảm bảo ánh xạ chuẩn 4 special tokens: <pad>=0, <unk>=1, <sos>=2, <eos>=3.
@@ -103,7 +103,7 @@ def train_spm_model(
 def train_spm_tokenizers(
     train_src="data/processed/train.en",
     train_tgt="data/processed/train.vi",
-    save_dir="tokenizers/spm",
+    save_dir="custom_tokenizers/spm",
     vocab_size=16000,
 ):
     os.makedirs(save_dir, exist_ok=True)

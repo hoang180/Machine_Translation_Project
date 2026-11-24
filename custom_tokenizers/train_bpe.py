@@ -1,5 +1,5 @@
 """
-Module: tokenizers/train_bpe.py
+Module: custom_tokenizers/train_bpe.py
 Phụ trách: Phần 1 (Lê)
 Cài đặt: Huấn luyện và bọc bộ tách từ BPE (Byte Pair Encoding) qua thư viện tokenizers của HuggingFace.
 Đảm bảo ánh xạ chuẩn 4 special tokens: <pad>=0, <unk>=1, <sos>=2, <eos>=3.
@@ -101,7 +101,7 @@ def train_bpe_model(
 def train_bpe_tokenizers(
     train_src="data/processed/train.en",
     train_tgt="data/processed/train.vi",
-    save_dir="tokenizers/bpe",
+    save_dir="custom_tokenizers/bpe",
     vocab_size=16000,
 ):
     os.makedirs(save_dir, exist_ok=True)

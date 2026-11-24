@@ -21,7 +21,7 @@ Báo cáo nghiên cứu và cài đặt thực nghiệm so sánh hai kiến trú
 btl-translation/
 ├── configs/                     # Cấu hình siêu tham số (seq2seq_config.yaml, transformer_config.yaml)
 ├── data/                        # Dữ liệu IWSLT'15 & script tiền xử lý (download_data.py, preprocess.py, dataset.py)
-├── tokenizers/                  # Huấn luyện 3 bộ tách từ: Word, BPE (HuggingFace) và SentencePiece
+├── custom_tokenizers/           # Huấn luyện 3 bộ tách từ: Word, BPE (HuggingFace) và SentencePiece
 ├── models/
 │   ├── seq2seq/                 # Mã nguồn tự cài đặt Seq2seq LSTM (Encoder, Decoder, Attention, Seq2seqModel)
 │   └── transformer/             # Mã nguồn tự cài đặt Vanilla Transformer from scratch
@@ -60,9 +60,9 @@ python3 data/download_data.py
 python3 data/preprocess.py
 
 # Bước 2.3: Huấn luyện các bộ Tokenizer (Word, BPE, SentencePiece)
-python3 tokenizers/train_word.py
-python3 tokenizers/train_bpe.py
-python3 tokenizers/train_spm.py
+python3 custom_tokenizers/train_word.py
+python3 custom_tokenizers/train_bpe.py
+python3 custom_tokenizers/train_spm.py
 ```
 
 ### 3. Huấn luyện Mô hình

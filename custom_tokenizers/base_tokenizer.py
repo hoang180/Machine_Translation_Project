@@ -1,5 +1,5 @@
 """
-Module: tokenizers/base_tokenizer.py
+Module: custom_tokenizers/base_tokenizer.py
 Phụ trách: Phần 1 (Lê)
 Cài đặt: Lớp giao diện chuẩn BaseTokenizerWrapper theo đúng Contract Mục 4.1 của file Quy ước 01.
 Giúp dataset.py, eval.py, beam_search.py và demo.py hoạt động thống nhất với mọi loại Tokenizer.

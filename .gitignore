@@ -1,0 +1,31 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Cuda / checkpoints / weights nặng
+checkpoints/
+*.pt
+*.pth
+*.bin
+*.model
+
+# Thư mục dữ liệu (không push lên git)
+data/raw/
+data/processed/
+*.tar.gz
+*.zip
+
+# Logs, tracking & cache
+wandb/
+runs/
+*.log
+.ipynb_checkpoints/
+.DS_Store
+
+# Môi trường ảo
+.env
+.venv/
+env/
+venv/
+ENV/

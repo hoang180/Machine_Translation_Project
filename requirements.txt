@@ -1,0 +1,13 @@
+# Danh sách thư viện cần thiết cho Đề tài 8: Dịch máy Anh - Việt
+torch>=2.0.0
+numpy>=1.24.0
+pyyaml>=6.0
+tqdm>=4.65.0
+sacrebleu>=2.3.1
+tokenizers>=0.13.0
+sentencepiece>=0.1.99
+transformers>=4.30.0
+wandb>=0.15.0
+matplotlib>=3.7.0
+seaborn>=0.12.0
+regex>=2023.6.3

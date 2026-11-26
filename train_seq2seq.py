@@ -70,6 +70,26 @@ def parse_args():
         action="store_true",
         help="Tắt ghi log lên Weights & Biases",
     )
+    parser.add_argument(
+        "--tokenizer",
+        type=str,
+        choices=["word", "bpe", "spm"],
+        default=None,
+        help="Ghi đè loại tokenizer ('word', 'bpe', 'spm')",
+    )
+    parser.add_argument(
+        "--attention",
+        type=str,
+        choices=["luong", "bahdanau"],
+        default=None,
+        help="Ghi đè cơ chế attention ('luong', 'bahdanau')",
+    )
+    parser.add_argument(
+        "--save_dir",
+        type=str,
+        default=None,
+        help="Ghi đè thư mục lưu checkpoint",
+    )
     return parser.parse_args()
 
 
@@ -274,6 +294,14 @@ class DummyDataLoader:
 def main():
     args = parse_args()
     config = load_config(args.config)
+
+    # Ghi đè cấu hình từ CLI nếu có
+    if args.tokenizer is not None:
+        config["tokenizer"]["type"] = args.tokenizer
+    if args.attention is not None:
+        config["model"]["attention_type"] = args.attention
+    if args.save_dir is not None:
+        config["training"]["save_dir"] = args.save_dir
 
     # 1. Cố định Seed để tái lập kết quả
     seed = config["experiment"].get("seed", 42)

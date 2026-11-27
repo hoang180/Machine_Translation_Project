@@ -303,6 +303,12 @@ def main():
     if args.save_dir is not None:
         config["training"]["save_dir"] = args.save_dir
 
+    # Đồng bộ tên run W&B theo quy ước Mục 8.2: seq2seq-<attention>-<tokenizer>
+    if args.tokenizer is not None or args.attention is not None:
+        attn_name = config["model"].get("attention_type", "luong")
+        tok_name = config["tokenizer"].get("type", "word")
+        config["experiment"]["name"] = f"seq2seq-{attn_name}-{tok_name}"
+
     # 1. Cố định Seed để tái lập kết quả
     seed = config["experiment"].get("seed", 42)
     set_seed(seed)

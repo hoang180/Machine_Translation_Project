@@ -88,6 +88,7 @@ def train_spm_model(
         vocab_size=vocab_size,
         model_type="unigram",
         character_coverage=0.9995,
+        hard_vocab_limit=False,
         pad_id=PAD_IDX,
         unk_id=UNK_IDX,
         bos_id=SOS_IDX,
